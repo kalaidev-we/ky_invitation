@@ -4,6 +4,15 @@ import React from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 
+const PARTICLES = [
+  { top: "20%", left: "15%", x: [0, -12, 0], y: [0, -35, 0], duration: 5.5, delay: 0.2 },
+  { top: "45%", left: "80%", x: [0, 10, 0], y: [0, -30, 0], duration: 6.2, delay: 0.8 },
+  { top: "65%", left: "25%", x: [0, -8, 0], y: [0, -25, 0], duration: 4.8, delay: 0.1 },
+  { top: "15%", left: "85%", x: [0, 14, 0], y: [0, -40, 0], duration: 7.0, delay: 1.5 },
+  { top: "80%", left: "75%", x: [0, -6, 0], y: [0, -28, 0], duration: 5.0, delay: 0.5 },
+  { top: "35%", left: "60%", x: [0, 8, 0], y: [0, -32, 0], duration: 6.5, delay: 1.1 },
+];
+
 export default function MomShowcase() {
   return (
     <section className="relative w-full py-24 px-4 bg-gradient-to-b from-pastel-bg to-[#FFF5F7] overflow-hidden select-none">
@@ -13,25 +22,25 @@ export default function MomShowcase() {
 
       {/* Floating Sparkles & Light Particles */}
       <div className="absolute inset-0 pointer-events-none z-0">
-        {[...Array(6)].map((_, i) => (
+        {PARTICLES.map((p, i) => (
           <motion.div
             key={i}
             className="absolute rounded-full bg-pastel-pink-light/60 w-2 h-2"
             style={{
-              top: `${Math.random() * 80 + 10}%`,
-              left: `${Math.random() * 80 + 10}%`,
+              top: p.top,
+              left: p.left,
             }}
             animate={{
-              y: [0, -30, 0],
-              x: [0, Math.random() * 20 - 10, 0],
+              y: p.y,
+              x: p.x,
               opacity: [0.2, 0.8, 0.2],
               scale: [0.8, 1.2, 0.8],
             }}
             transition={{
-              duration: Math.random() * 4 + 4,
+              duration: p.duration,
               repeat: Infinity,
               ease: "easeInOut",
-              delay: Math.random() * 2,
+              delay: p.delay,
             }}
           />
         ))}

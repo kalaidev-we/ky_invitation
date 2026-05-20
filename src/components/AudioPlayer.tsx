@@ -41,7 +41,7 @@ export default function AudioPlayer() {
   // Initialize Audio Context
   const initAudio = () => {
     if (audioCtxRef.current) return;
-    const AudioContextClass = window.AudioContext || (window as any).webkitAudioContext;
+    const AudioContextClass = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
     const ctx = new AudioContextClass();
     const masterGain = ctx.createGain();
     

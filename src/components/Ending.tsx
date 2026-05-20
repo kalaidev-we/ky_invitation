@@ -99,7 +99,6 @@ export default function Ending() {
 
       // Inner flame (bottom center)
       ctx.beginPath();
-      const flameHeight = l.size * 0.35;
       ctx.arc(l.x, y + h - 3, l.size * 0.2, 0, Math.PI * 2);
       ctx.fillStyle = "#FFFFFF";
       ctx.shadowBlur = 6;

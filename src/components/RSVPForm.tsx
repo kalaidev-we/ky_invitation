@@ -214,7 +214,7 @@ export default function RSVPForm() {
               
               {formData.attending === "yes" ? (
                 <p className="font-poppins text-xs text-charcoal/70 max-w-sm leading-relaxed mb-6 select-text">
-                  We are absolutely thrilled! Thank you for planning to join us in celebrating this beautiful blessing. We can't wait to see you on June 18, 2026.
+                  We are absolutely thrilled! Thank you for planning to join us in celebrating this beautiful blessing. We can&apos;t wait to see you on June 18, 2026.
                 </p>
               ) : (
                 <p className="font-poppins text-xs text-charcoal/70 max-w-sm leading-relaxed mb-6 select-text">

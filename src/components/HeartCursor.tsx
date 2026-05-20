@@ -26,7 +26,7 @@ export default function HeartCursor() {
     if (!ctx) return;
 
     let animationFrameId: number;
-    let hearts: Heart[] = [];
+    const hearts: Heart[] = [];
     const colors = ["#FADADD", "#F8C8DC", "#E75480", "#FFF5F7"];
 
     const resizeCanvas = () => {

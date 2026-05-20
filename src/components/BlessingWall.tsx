@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Heart, Gift, MessageSquareCode, Plus } from "lucide-react";
+import { Heart, Gift, Plus } from "lucide-react";
 import confetti from "canvas-confetti";
 
 interface Wish {
@@ -19,7 +19,13 @@ const SEED_WISHES: Wish[] = [
 ];
 
 export default function BlessingWall() {
-  const [wishes, setWishes] = useState<Wish[]>([]);
+  const [wishes, setWishes] = useState<Wish[]>(() => {
+    if (typeof window !== "undefined") {
+      const stored = localStorage.getItem("ky_baby_wishes");
+      if (stored) return JSON.parse(stored);
+    }
+    return SEED_WISHES;
+  });
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [newWish, setNewWish] = useState({ name: "", message: "" });
 
@@ -27,14 +33,15 @@ export default function BlessingWall() {
     const stored = localStorage.getItem("ky_baby_wishes");
     if (stored) {
       setWishes(JSON.parse(stored));
-    } else {
-      setWishes(SEED_WISHES);
-      localStorage.setItem("ky_baby_wishes", JSON.stringify(SEED_WISHES));
     }
   };
 
   useEffect(() => {
-    loadWishes();
+    // Seed default wishes to localStorage if not there
+    const stored = localStorage.getItem("ky_baby_wishes");
+    if (!stored) {
+      localStorage.setItem("ky_baby_wishes", JSON.stringify(SEED_WISHES));
+    }
 
     // Listen for custom event from RSVP Form
     const handleWishesUpdated = () => {
@@ -124,7 +131,7 @@ export default function BlessingWall() {
 
               {/* Message */}
               <p className="font-poppins text-xs leading-relaxed text-charcoal/80 mb-6 italic select-text">
-                "{wish.message}"
+                &ldquo;{wish.message}&rdquo;
               </p>
 
               {/* Author Info */}

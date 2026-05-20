@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
-import { Play, X, Heart, Maximize2, Minimize2 } from "lucide-react";
+import { Play, X, Maximize2 } from "lucide-react";
 
 interface PolaroidItem {
   id: number;

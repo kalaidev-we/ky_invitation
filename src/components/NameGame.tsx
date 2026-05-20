@@ -20,7 +20,14 @@ const SEED_PREDICTIONS: Prediction[] = [
 ];
 
 export default function NameGame() {
-  const [predictions, setPredictions] = useState<Prediction[]>([]);
+  const [predictions, setPredictions] = useState<Prediction[]>(() => {
+    if (typeof window !== "undefined") {
+      const stored = localStorage.getItem("ky_baby_name_predictions");
+      if (stored) return JSON.parse(stored);
+    }
+    return SEED_PREDICTIONS;
+  });
+
   const [formData, setFormData] = useState({
     name: "",
     guess: "",
@@ -29,13 +36,10 @@ export default function NameGame() {
   });
   const [submitted, setSubmitted] = useState(false);
 
-  // Load from local storage + seed
+  // Seed default predictions to localStorage on mount if missing
   useEffect(() => {
     const stored = localStorage.getItem("ky_baby_name_predictions");
-    if (stored) {
-      setPredictions(JSON.parse(stored));
-    } else {
-      setPredictions(SEED_PREDICTIONS);
+    if (!stored) {
       localStorage.setItem("ky_baby_name_predictions", JSON.stringify(SEED_PREDICTIONS));
     }
   }, []);
