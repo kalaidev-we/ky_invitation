@@ -1,26 +1,125 @@
 @import "tailwindcss";
 
+@theme {
+  --font-great-vibes: var(--font-great-vibes), cursive;
+  --font-playfair: var(--font-playfair), serif;
+  --font-poppins: var(--font-poppins), sans-serif;
+
+  --color-pastel-pink-light: #FADADD;
+  --color-pastel-pink: #F8C8DC;
+  --color-pastel-bg: #FFF5F7;
+  --color-pastel-rose: #E75480;
+  --color-pastel-gold: #D4A373;
+  --color-charcoal: #4A3B32;
+  
+  --animate-float-slow: float 8s ease-in-out infinite;
+  --animate-float-medium: float-medium 6s ease-in-out infinite;
+  --animate-float-fast: float-fast 4s ease-in-out infinite;
+  --animate-pulse-slow: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-heart-pulse: heartbeat 1.5s ease-in-out infinite;
+  --animate-shimmer: shimmer 3s linear infinite;
+  --animate-spin-slow: spin 20s linear infinite;
+  --animate-fade-in-up: fadeInUp 1s ease-out forwards;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-15px) rotate(3deg); }
+}
+
+@keyframes float-medium {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(-3deg); }
+}
+
+@keyframes float-fast {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-6px) rotate(2deg); }
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  25% { transform: scale(1.1); }
+  40% { transform: scale(1.05); }
+  60% { transform: scale(1.15); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --background: #FFF5F7;
+  --foreground: #4A3B32;
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
 }
+
+/* Glassmorphism Styles */
+.glassmorphism {
+  background: rgba(255, 245, 247, 0.65);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(250, 218, 221, 0.5);
+  box-shadow: 0 8px 32px 0 rgba(231, 84, 128, 0.08);
+}
+
+.glassmorphism-dark {
+  background: rgba(74, 59, 50, 0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(212, 163, 115, 0.2);
+}
+
+/* Gold Shimmer Text */
+.text-shimmer-gold {
+  background: linear-gradient(
+    to right,
+    #D4A373 0%,
+    #F3E5AB 25%,
+    #D4A373 50%,
+    #F3E5AB 75%,
+    #D4A373 100%
+  );
+  background-size: 200% auto;
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: shimmer 4s linear infinite;
+  text-shadow: 0px 2px 4px rgba(212, 163, 115, 0.1);
+}
+
+/* Hide Scrollbar */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Elegant Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #FFF5F7;
+}
+::-webkit-scrollbar-thumb {
+  background: #F8C8DC;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #E75480;
+}
+
