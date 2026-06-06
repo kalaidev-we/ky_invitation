@@ -72,6 +72,7 @@ export default function Gallery() {
             whileHover={{ y: -8, rotate: item.rotation * 0.4, scale: 1.02 }}
             transition={{ type: "spring", damping: 14 }}
             onClick={() => setActivePhoto(item)}
+            onHoverStart={() => setActivePhoto(item)}
             className="w-64 p-4 pb-6 bg-white shadow-lg border border-pastel-pink-light/35 rounded-md cursor-pointer relative group flex-shrink-0"
           >
             {/* Polaroid Shadow Glow */}
@@ -84,7 +85,8 @@ export default function Gallery() {
                 alt={item.caption}
                 fill
                 className="object-cover"
-                sizes="256px"
+                sizes="(max-width: 768px) 90vw, (max-width: 1280px) 42vw, 256px"
+                priority={item.id === 1}
               />
               {/* Overlay hover effect */}
               <div className="absolute inset-0 bg-charcoal/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
@@ -170,11 +172,13 @@ export default function Gallery() {
               
               <div className="relative w-full h-[320px] bg-pastel-bg rounded-lg overflow-hidden mb-5">
                 <Image
+                  key={activePhoto.id}
                   src={activePhoto.src}
                   alt={activePhoto.caption}
                   fill
                   className="object-cover"
                   sizes="(max-width: 768px) 100vw, 400px"
+                  priority
                 />
               </div>
 

@@ -41,11 +41,34 @@ export default function AudioPlayer() {
     };
   }, []);
 
+  useEffect(() => {
+    if (hasInteracted) return;
+
+    const handleDocumentClick = async () => {
+      setHasInteracted(true);
+      const audio = audioRef.current;
+      if (!audio) return;
+
+      try {
+        await audio.play();
+        setIsPlaying(true);
+      } catch (error) {
+        console.warn("Unable to play audio on page click:", error);
+      }
+    };
+
+    document.addEventListener("click", handleDocumentClick, { once: true });
+
+    return () => {
+      document.removeEventListener("click", handleDocumentClick);
+    };
+  }, [hasInteracted]);
+
   return (
     <div className="fixed bottom-6 right-6 z-50 flex items-center gap-3">
       {!hasInteracted && (
         <div className="glassmorphism hidden md:block rounded-xl px-4 py-2 text-xs font-medium text-pastel-rose animate-bounce shadow-md max-w-xs border border-pastel-pink-light">
-          🎵 Click here to play the music
+          🎵 Click anywhere to play the music
         </div>
       )}
 
