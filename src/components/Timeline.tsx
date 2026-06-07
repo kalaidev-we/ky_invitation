@@ -14,25 +14,25 @@ interface TimelineEvent {
 const EVENTS: TimelineEvent[] = [
   {
     title: "The happiest news",
-    date: "Autumn 2025",
+    date: "february 2025",
     description: "When the test showed two beautiful lines, our hearts instantly doubled in size. The beginning of our greatest adventure.",
     icon: <Sparkles className="h-5 w-5 text-pastel-gold" />,
   },
   {
     title: "Family celebrations",
-    date: "Winter 2025",
+    date: "may 2025",
     description: "Sharing the bliss with grandparents, uncles, and aunts. The warm laughter, sweet treats, and protective prayers wrapping around us.",
     icon: <Heart className="h-5 w-5 text-pastel-rose" />,
   },
   {
     title: "Moments of love",
-    date: "Spring 2026",
+    date: "june 2026",
     description: "Every soft kick, every gentle flutter, and quiet midnight conversations with the little bump. Building a lifetime of love.",
     icon: <Star className="h-5 w-5 text-pastel-gold" />,
   },
   {
     title: "Awaiting the baby",
-    date: "June 2026",
+    date: "October 2026",
     description: "Nesting, sorting through tiny pastel socks, and preparing our home and hearts for the sweet cry of our baby shower miracle.",
     icon: <Calendar className="h-5 w-5 text-pastel-rose" />,
   },
